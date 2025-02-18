@@ -4,6 +4,8 @@ This repository contains the bash updater script which can be used on *NIX-like 
 
 The script uses the YDNS API v1 (dyn-compatible).
 
+YDNS是动态域名服务，稳定用了多年。这个脚本是本地公网IP改变后，用来更新DDNS记录的Linux shell 脚本。
+
 ## Installation
 
 First, ensure that your host has [curl](http://curl.haxx.se) installed.
