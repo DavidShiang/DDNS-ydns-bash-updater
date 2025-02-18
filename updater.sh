@@ -28,11 +28,12 @@ YDNS_PASSWD="secret"
 YDNS_HOST="myhost.ydns.eu"
 ## Store last_ip in the same directory as this script
 YDNS_LASTIP_FILE="ydns_last_ip_$YDNS_HOST"
+YDNS_IP_HISTORY="YDNS_LASTIP_HISTORY.log"
 
 ##
 # Don't change anything below.
 ##
-YDNS_UPD_VERSION="20230922.1"
+YDNS_UPD_VERSION="20250215.0"
 
 if ! hash curl 2>/dev/null; then
 	echo "ERROR: cURL is missing."
@@ -173,6 +174,10 @@ if [ "$current_ip" != "$last_ip" ]; then
 		ok)
 			write_msg "YDNS host updated successfully: $YDNS_HOST ($current_ip)"
 			echo "$current_ip" > $YDNS_LASTIP_FILE
+   			# Write to IP log file.
+   			echo -e "\n=============\n" >> $YDNS_IP_HISTORY
+      			echo  "`date '+%Y-%m-%d %H:%M:%S'`" >> $YDNS_IP_HISTORY
+      			echo "$current_ip" >> $YDNS_IP_HISTORY
 			exit 0
 			;;
 
